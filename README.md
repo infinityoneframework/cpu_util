@@ -1,6 +1,9 @@
 # CpuUtil
 
-**TODO: Add description**
+[license-img]: http://img.shields.io/badge/license-MIT-brightgreen.svg
+[license]: http://opensource.org/licenses/MIT
+
+Get CPU utilization information on Linux systems.
 
 ## Installation
 
@@ -19,3 +22,10 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/cpu_util](https://hexdocs.pm/cpu_util).
 
+## License
+
+`CpuUtil` is Copyright (c) 2020-2021 E-MetroTel
+
+The source code is released under the MIT License.
+
+Check [LICENSE](LICENSE.md) for more information.

@@ -91,14 +91,18 @@ defmodule CpuUtil do
   @doc """
   Read the OS stat data.
 
-  * Reads `/proc/stat'
+  * Reads `/proc/stat`
   * Pareses the first line ('cpu')
   * Converts the numbers (string) to integers
   """
   @spec stat() :: list() | {:error, any()}
   def stat do
-    with {:ok, file} <- File.read("/proc/stat"),
-         list <- String.split(file, "\n", trim: true),
+    with {:ok, file} <- File.read("/proc/stat"), do: stat(file)
+  end
+
+  @spec stat(binary) :: list() | {:error, any()}
+  def stat(contents) do
+    with list <- String.split(contents, "\n", trim: true),
          [cpu | _] <- list,
          [label | value] <- String.split(cpu, ~r/\s/, trim: true),
          do: [label | Enum.map(value, &String.to_integer/1)]
@@ -150,9 +154,13 @@ defmodule CpuUtil do
   *  cstime        kernel mode jiffies with child's
   """
   @spec stat_pid(integer()) :: proc_pid_stat() | {:error, any()}
-  def stat_pid(pid) do
-    with {:ok, file} <- File.read("/proc/#{pid}/stat"),
-         list <- String.split(file, ~r/\s/, trim: true),
+  def stat_pid(pid) when is_integer(pid) do
+    with {:ok, file} <- File.read("/proc/#{pid}/stat"), do: stat_pid(file)
+  end
+
+  @spec stat_pid(binary()) :: proc_pid_stat() | {:error, any()}
+  def stat_pid(contents) when is_binary(contents) do
+    with list <- String.split(contents, ~r/\s/, trim: true),
          list <-
            Enum.map(list, fn item ->
              if item =~ ~r/^\d+$/, do: String.to_integer(item), else: item
