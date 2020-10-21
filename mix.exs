@@ -9,10 +9,14 @@ defmodule CpuUtil.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       name: "CpuUtil",
+      package: package(),
       docs: [
         main: "CpuUtil",
         extras: ["README.md", "LICENSE.md"]
-      ]
+      ],
+      description: """
+      Get CPU Utilization information on Linux systems.
+      """
     ]
   end
 
@@ -29,6 +33,15 @@ defmodule CpuUtil.MixProject do
       {:ex_doc, "~> 0.22.0", override: true, only: :dev, runtime: false}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["Stephen Pallen"],
+      licenses: ["MIT"],
+      links: %{"Github" => "https://github.com/infinityoneframework/cpu_util"},
+      files: ~w(lib README.md mix.exs LICENSE.md)
     ]
   end
 end
