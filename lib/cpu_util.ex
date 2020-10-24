@@ -52,9 +52,9 @@ defmodule CpuUtil do
         }
 
   @type util :: %{
-          sys: Float.t(),
-          total: Float.t(),
-          user: Float.t()
+          sys: float(),
+          total: float(),
+          user: float()
         }
 
   # list of fields returned when /proc/<PID>/stat is read.
@@ -77,7 +77,7 @@ defmodule CpuUtil do
   @doc """
   Get the number of CPU Cores.
 
-  Deprecated! Use `CpuUtl.core_count/0 instead.
+  Deprecated! Use `CpuUtl.core_count/0` instead.
   """
   @spec num_cores() :: {:ok, integer()} | :error
   def num_cores do
