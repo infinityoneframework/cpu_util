@@ -349,8 +349,7 @@ defmodule CpuUtil do
     try do
       t_diff = curr.total - prev.total
 
-      user_util = 100 * (curr.stats.utime - prev.stats.utime) / t_diff * cores
-      sys_util = 100 * (curr.stats.stime - prev.stats.stime) / t_diff * cores
+      {user_util, sys_util} = calc_user_sys_util(t_diff, curr, prev, cores)
 
       %{
         sys: Float.round(sys_util, precision),
@@ -358,9 +357,17 @@ defmodule CpuUtil do
         user: Float.round(user_util, precision)
       }
     rescue
-      e -> {:error, e}
+      _e -> %{sys: 0.0, total: 0.0, user: 0.0}
     end
   end
+
+  defp calc_user_sys_util(0, _, _, _),
+    do: {0, 0}
+
+  defp calc_user_sys_util(t_diff, curr, prev, cores),
+    do:
+      {100 * (curr.stats.utime - prev.stats.utime) / t_diff * cores,
+       100 * (curr.stats.stime - prev.stats.stime) / t_diff * cores}
 
   @doc """
   Calculate the OS process CPU Utilization.
