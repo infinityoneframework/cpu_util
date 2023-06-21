@@ -5,7 +5,7 @@ defmodule CpuUtil.MixProject do
     [
       app: :cpu_util,
       version: "0.5.1",
-      elixir: "~> 1.7",
+      elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       name: "CpuUtil",
