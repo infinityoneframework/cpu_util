@@ -81,7 +81,7 @@ defmodule CpuUtil do
   """
   @spec num_cores() :: {:ok, integer()} | :error
   def num_cores do
-    Logger.warn("deprecated. use core_count/0 instead")
+    Logger.warning("deprecated. use core_count/0 instead")
     core_count()
   end
 
