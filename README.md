@@ -13,7 +13,7 @@ by adding `cpu_util` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:cpu_util, "~> 0.1.0"}
+    {:cpu_util, "~> 0.6"}
   ]
 end
 ```
@@ -24,7 +24,7 @@ be found at [https://hexdocs.pm/cpu_util](https://hexdocs.pm/cpu_util).
 
 ## License
 
-`CpuUtil` is Copyright (c) 2020-2021 E-MetroTel
+`CpuUtil` is Copyright (c) 2020-2023 E-MetroTel
 
 The source code is released under the MIT License.
 
