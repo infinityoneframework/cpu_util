@@ -77,7 +77,7 @@ defmodule CpuUtil do
   @doc """
   Get the number of CPU Cores.
 
-  Deprecated! Use `CpuUtl.core_count/0` instead.
+  Deprecated! Use `CpuUtil.core_count/0` instead.
   """
   @spec num_cores() :: {:ok, integer()} | :error
   def num_cores do
@@ -133,7 +133,7 @@ defmodule CpuUtil do
   ## Examples
 
       iex> ["cpu" | numbers] = CpuUtil.stat()
-      iex> length(numbers) == 9 and Enum.all?(numbers, &is_integer/1)
+      iex> length(numbers) == 10 and Enum.all?(numbers, &is_integer/1)
       true
   """
   @spec stat() :: list() | {:error, any()}
@@ -144,7 +144,7 @@ defmodule CpuUtil do
   @doc """
   Parse the data read from /proc/stat.
 
-  Extra the first line "cpu" and convert numbers to integers.
+  Extract the first line "cpu" and convert numbers to integers.
 
   ## Examples
 
